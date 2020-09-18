@@ -21,7 +21,7 @@ const Signin: React.FC = () => {
 
           <button type="submit">Entrar</button>
         </form>
-        <a href="teste">Já tem uma conta? Clique aqui!</a>
+        <a href="teste">Não tem uma conta? Clique aqui!</a>
       </Content>
 
       <Background />
