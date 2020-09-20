@@ -5,6 +5,7 @@ export const Container = styled.div`
   background-image: linear-gradient(#ccefd4, #40855d);
   height: 100vh;
   display: flex;
+  justify-content: center;
   align-items: stretch;
 `;
 
@@ -21,7 +22,7 @@ export const Content = styled.div`
     font-size: 72px;
     font-family: Roboto;
     font-weight: bold;
-    margin-bottom: 24px;
+    margin-top: -120px;
   }
 
   form {
@@ -38,23 +39,25 @@ export const Content = styled.div`
       flex-direction: row;
       align-items: center;
       margin-bottom: 15px;
+      background: #40855d;
+      border-radius: 40px;
 
       input {
         border-radius: 40px;
-        background: #ccefd4;
+        background: #40855d;
         padding: 16px;
         border: 0;
         width: 100%;
-        color: #40855d;
+        color: #fff;
         font-size: 18px;
         ::placeholder {
-          color: #fff;
+          color: #ccefd4;
         }
       }
       img {
         height: 24px;
         width: 24px;
-        margin-right: 10px;
+        margin: 10px;
       }
     }
 
@@ -63,6 +66,8 @@ export const Content = styled.div`
       height: 50px;
       margin-top: 20px;
       border-radius: 40px;
+      background: #40855d;
+      color: #fff;
 
       :hover {
         transition: 0.8s;
@@ -85,5 +90,5 @@ export const Content = styled.div`
 export const Background = styled.div`
   flex: 1;
   background: url(${stockImage}) no-repeat center;
-  background-size: 800px;
+  background-size: 500px;
 `;

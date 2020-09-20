@@ -1,6 +1,7 @@
 import React from "react";
-import mailIcon from "../../assets/mail-account.svg";
-import passIcon from "../../assets/pass.svg";
+import { Link } from "react-router-dom";
+import accountIcon from "../../assets/account.png";
+import passIcon from "../../assets/password.png";
 
 import { Container, Content, Background } from "./styles";
 
@@ -11,8 +12,8 @@ const Signin: React.FC = () => {
         <h1>Stock's</h1>
         <form>
           <div>
-            <img src={mailIcon} alt="" />
-            <input placeholder="email" />
+            <img src={accountIcon} alt="" />
+            <input placeholder="user name" />
           </div>
           <div>
             <img src={passIcon} alt="" />
@@ -21,9 +22,8 @@ const Signin: React.FC = () => {
 
           <button type="submit">Entrar</button>
         </form>
-        <a href="teste">Não tem uma conta? Clique aqui!</a>
+        <Link to="/signup">Não tem uma conta? Clique aqui!</Link>
       </Content>
-
       <Background />
     </Container>
   );
