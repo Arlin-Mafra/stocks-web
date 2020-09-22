@@ -14,6 +14,7 @@ export const Content = styled.div`
   flex-direction: column;
   max-width: 700px;
   width: 100%;
+  margin-left: 100px;
   place-content: center;
   align-items: center;
 
@@ -34,31 +35,6 @@ export const Content = styled.div`
     text-align: center;
     padding: 40px;
 
-    div {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin-bottom: 15px;
-      background: #40855d;
-      border-radius: 40px;
-
-      input {
-        border-radius: 40px;
-        background: #40855d;
-        padding: 16px;
-        border: 0;
-        width: 100%;
-        color: #fff;
-        font-size: 18px;
-        ::placeholder {
-          color: #ccefd4;
-        }
-      }
-      img {
-        height: 24px;
-        width: 24px;
-        margin: 10px;
-      }
     }
 
     button {
@@ -90,5 +66,5 @@ export const Content = styled.div`
 export const Background = styled.div`
   flex: 1;
   background: url(${stockImage}) no-repeat center;
-  background-size: 500px;
+  background-size: 700px;
 `;

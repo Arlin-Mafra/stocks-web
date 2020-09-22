@@ -1,27 +1,29 @@
 import React from "react";
+import { FiUser, FiLock } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import accountIcon from "../../assets/account.png";
-import passIcon from "../../assets/password.png";
+import { Form } from "@unform/web";
+import Input from "../../components/input";
 
 import { Container, Content, Background } from "./styles";
 
 const Signin: React.FC = () => {
+  function handleSignIn(data: object): void {
+    console.log(data);
+  }
   return (
     <Container>
       <Content>
         <h1>Stock's</h1>
-        <form>
-          <div>
-            <img src={accountIcon} alt="" />
-            <input placeholder="user name" />
-          </div>
-          <div>
-            <img src={passIcon} alt="" />
-            <input type="password" placeholder="senha" />
-          </div>
-
+        <Form onSubmit={handleSignIn}>
+          <Input name="user-name" placeholder="user name" icon={FiUser} />
+          <Input
+            name="password"
+            type="password"
+            placeholder="senha"
+            icon={FiLock}
+          />
           <button type="submit">Entrar</button>
-        </form>
+        </Form>
         <Link to="/signup">Não tem uma conta? Clique aqui!</Link>
       </Content>
       <Background />

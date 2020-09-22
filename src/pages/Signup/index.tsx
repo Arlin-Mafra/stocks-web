@@ -1,35 +1,35 @@
 import React from "react";
+import { FiUser, FiMail, FiLock } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import mailIcon from "../../assets/mail.png";
-import passIcon from "../../assets/password.png";
-import accountIcon from "../../assets/account.png";
+import { Form } from "@unform/web";
+
+import Input from "../../components/input";
 
 import { Container, Content, Background } from "./styles";
+
+function handleSunmit(data: object): void {
+  console.log(data);
+}
 
 const Signup: React.FC = () => {
   return (
     <Container>
+      <Background />
       <Content>
         <h1>Stock's</h1>
-        <form>
-          <div>
-            <img src={accountIcon} alt="" />
-            <input placeholder="user name" />
-          </div>
-          <div>
-            <img src={mailIcon} alt="" />
-            <input placeholder="email" />
-          </div>
-          <div>
-            <img src={passIcon} alt="" />
-            <input type="password" placeholder="senha" />
-          </div>
-
+        <Form onSubmit={handleSunmit}>
+          <Input placeholder="user name" name="user-name" icon={FiUser} />
+          <Input placeholder="email" name="email" icon={FiMail} />
+          <Input
+            type="password"
+            placeholder="senha"
+            name="password"
+            icon={FiLock}
+          />
           <button type="submit">Entrar</button>
-        </form>
+        </Form>
         <Link to="/">Já tem login? Clique aqui!</Link>
       </Content>
-      <Background />
     </Container>
   );
 };
