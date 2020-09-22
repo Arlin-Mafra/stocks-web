@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import * as Yup from "yup";
 import { FiUser, FiLock } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -7,7 +7,7 @@ import { FormHandles } from "@unform/core";
 import getValidationErros from "../../utils/getValidationErros";
 import Input from "../../components/input";
 
-import { AuthContext } from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 import { Container, Content, Background } from "./styles";
 
@@ -18,7 +18,7 @@ interface SignInData {
 
 const Signin: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const { signIn, user } = useContext(AuthContext);
+  const { signIn, user } = useAuth();
 
   console.log(user);
 
@@ -28,7 +28,7 @@ const Signin: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          username: Yup.string().required("Username obrigatório"),
+          username: Yup.string().required("Usename obrigatório"),
           password: Yup.string().min(4, "No minimo 4 digitos"),
         });
         await schema.validate(data, {
@@ -38,9 +38,11 @@ const Signin: React.FC = () => {
           username: data.username,
           password: data.password,
         });
+        formRef.current?.reset();
       } catch (error) {
         const errors = getValidationErros(error);
         formRef.current?.setErrors(errors);
+        alert(error);
         console.log(error);
       }
     },
