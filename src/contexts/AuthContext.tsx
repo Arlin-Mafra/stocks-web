@@ -5,17 +5,18 @@ import api from '../utils/apiClient';
 
 interface AuthData {
   token: string;
-  user: object;
+  user: string;
 }
-
-interface SignInCredentials {
+interface FormCredentials {
   username: string;
+  email?: string;
   password: string;
 }
 
 interface AuthContextData {
-  user: object;
-  signIn(credentials: SignInCredentials): Promise<void>;
+  user: string;
+  signIn(credentials: FormCredentials): Promise<void>;
+  signUp(credentials: FormCredentials): Promise<void>;
   signOut(): void;
 }
 
@@ -26,11 +27,12 @@ const AuthProvider: React.FC = ({ children }) => {
     const token = localStorage.getItem('@stock-web:token');
     const user = localStorage.getItem('@stock-web:user');
     if (token && user) {
-      return { token, user: JSON.parse(user) };
+      return { token, user };
     }
     return {} as AuthData;
   });
 
+  //Login
   const signIn = useCallback(async ({ username, password }) => {
     const response = await api.post('auth', {
       username,
@@ -39,18 +41,30 @@ const AuthProvider: React.FC = ({ children }) => {
     const { token, user } = response.data;
 
     localStorage.setItem('@stock-web:token', token);
-    localStorage.setItem('@stock-web:user', JSON.stringify(user));
+    localStorage.setItem('@stock-web:user', user.username);
 
     setdata({ token, user });
   }, []);
 
+  //Cadastro
+  const signUp = useCallback(async ({ username, email, password }) => {
+    const response = await api.post('users', {
+      username,
+      email,
+      password,
+    });
+    console.log(response.data);
+    alert('Usuário criado com sucesso!');
+  }, []);
+
+  //Logout
   const signOut = useCallback(() => {
     localStorage.removeItem('@stock-web:token');
     localStorage.removeItem('@stock-web:user');
     setdata({} as AuthData);
   }, []);
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider value={{ user: data.user, signIn, signOut, signUp }}>
       {children}
     </AuthContext.Provider>
   );

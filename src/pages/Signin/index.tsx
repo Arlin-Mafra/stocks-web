@@ -36,17 +36,17 @@ const Signin: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
-        signIn({
+        await signIn({
           username: data.username,
           password: data.password,
         });
         formRef.current?.reset();
-        history.push('/dashboard');
+        history.push('/dashboard', user);
       } catch (error) {
         const errors = getValidationErros(error);
         formRef.current?.setErrors(errors);
-        alert(error);
         console.log(error);
+        return;
       }
     },
     [signIn],

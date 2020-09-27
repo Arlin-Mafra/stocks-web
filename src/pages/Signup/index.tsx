@@ -5,9 +5,9 @@ import { Link, useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import getValidationErros from '../../utils/getValidationErros';
-import api from '../../utils/apiClient';
 import Input from '../../components/input';
 import { Container, Content, Background } from './styles';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface SignUpCredentials {
   username: string;
@@ -17,18 +17,9 @@ interface SignUpCredentials {
 
 const Signup: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const { signUp } = useAuth();
 
   const history = useHistory();
-
-  const signUp = useCallback(async ({ username, email, password }) => {
-    const response = await api.post('users', {
-      username,
-      email,
-      password,
-    });
-
-    console.log(response.data);
-  }, []);
 
   const handleSunmit = useCallback(
     async (data: SignUpCredentials) => {
@@ -44,11 +35,12 @@ const Signup: React.FC = () => {
           stripUnknown: true,
         });
 
-        signUp({
+        await signUp({
           username: data.username,
           email: data.email,
           password: data.password,
         });
+
         formRef.current?.reset();
 
         history.push('/');
@@ -56,6 +48,7 @@ const Signup: React.FC = () => {
         const errors = getValidationErros(error);
         formRef.current?.setErrors(errors);
         console.log(error);
+        return;
       }
     },
     [signUp],
