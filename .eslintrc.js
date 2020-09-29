@@ -14,12 +14,15 @@ module.exports = {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
       tsx: true,
+      modules: true,
+      experimentalObjectRestSpread: true,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 2017,
     sourceType: 'module',
   },
   plugins: ['react', 'import', 'jsx-a11y'],
