@@ -6,31 +6,40 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin-top: 0;
 `;
 
 export const Content = styled.div`
-  margin-top: 10px;
-  padding: 60px;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  justify-content: space-between;
-  align-items: center;
-  width: 1024px;
-  height: 100%;
+  max-width: 1024px;
 
-  Button {
-    width: 125px;
-    height: 110px;
+  section {
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-around;
   }
 `;
 
 export const Avatar = styled.div`
-  margin-top: 20px;
+  margin: 20px 0 100px 30px;
+  display: flex;
+  align-items: center;
+
+  button {
+    background: transparent;
+    border: 0;
+    margin-left: 10px;
+  }
   strong {
     color: #40855d;
-    text-align: left;
   }
+  img {
+    height: 24px;
+    width: 24px;
+  }
+`;
+
+export const ContentNavigation = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
 `;

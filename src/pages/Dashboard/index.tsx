@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
-import { Container, Content, Avatar } from './styles';
+import { Container, Content, Avatar, ContentNavigation } from './styles';
 
 import Header from '../../components/Header';
 import Button from '../../components/Button';
@@ -27,29 +27,34 @@ const DashBoard: React.FC = () => {
   return (
     <>
       <Container>
-        <Header />
-        <Avatar>
-          <strong>Bem vindo! {username}</strong>
-        </Avatar>
         <Content>
-          <Button>
-            <img src={VendaIcon} alt="" />
-          </Button>
-          <Button>
-            <img src={UsersIcon} alt="" />
-          </Button>
-          <Button>
-            <img src={ClientIcon} alt="" />
-          </Button>
-          <Button>
-            <img src={CatIcon} alt="" />
-          </Button>
-          <Button>
-            <img src={ProductIcon} alt="" />
-          </Button>
-          <Button>
-            <img src={OutIcon} alt="" />
-          </Button>
+          <Header />
+          <Avatar>
+            <strong>Bem vindo! {username}</strong>
+            <button>
+              <img src={OutIcon} alt="Sair" />
+            </button>
+          </Avatar>
+
+          <ContentNavigation>
+            <Button>
+              <img src={VendaIcon} alt="Vendas" />
+            </Button>
+            <Button>
+              <img src={UsersIcon} alt="Usuarios" />
+            </Button>
+            <Button>
+              <img src={ClientIcon} alt="Clientes" />
+            </Button>
+          </ContentNavigation>
+          <section>
+            <Button>
+              <img src={CatIcon} alt="Categorias" />
+            </Button>
+            <Button>
+              <img src={ProductIcon} alt="Produtos" />
+            </Button>
+          </section>
         </Content>
       </Container>
     </>
