@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
 *{
@@ -10,6 +10,7 @@ export default createGlobalStyle`
 body{
  
   -webkit-font-smoothing:antialiased;
+  background:#40855D
 }
 body,input,button{
   font:16px Roboto,sans-serif;

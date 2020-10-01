@@ -51,7 +51,7 @@ const Signup: React.FC = () => {
         return;
       }
     },
-    [signUp],
+    [signUp, history],
   );
 
   return (

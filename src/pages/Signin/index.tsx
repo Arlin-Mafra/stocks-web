@@ -41,7 +41,7 @@ const Signin: React.FC = () => {
           password: data.password,
         });
         formRef.current?.reset();
-        history.push('/dashboard', user);
+        history.push('/dashboard');
       } catch (error) {
         const errors = getValidationErros(error);
         formRef.current?.setErrors(errors);
@@ -49,7 +49,7 @@ const Signin: React.FC = () => {
         return;
       }
     },
-    [signIn],
+    [signIn, history],
   );
 
   return (

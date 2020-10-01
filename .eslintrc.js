@@ -36,6 +36,8 @@ module.exports = {
     'import/prefer-default-export': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
+    'no-unused-expressions': 'off',
+    '@typescript-eslint/no-unused-expressions': ['error'],
   },
   settings: {
     'import/parsers': {
