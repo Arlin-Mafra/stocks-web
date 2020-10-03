@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { FiEdit2 } from 'react-icons/fi';
-import { MdDelete } from 'react-icons/md';
 
 import {
   Container,
@@ -20,6 +19,7 @@ import OutIcon from '../../assets/sair.png';
 import HomeIcon from '../../assets/home.png';
 import ClientIcon from '../../assets/cliente.png';
 import VendaIcon from '../../assets/bens.png';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface UserData {
   id: number;
@@ -28,8 +28,11 @@ interface UserData {
 }
 
 const Usuario: React.FC = () => {
-  const inputRef = useRef(null);
   const [user, setUsers] = useState<UserData[]>([]);
+
+  const { signOut } = useAuth();
+
+  const history = useHistory();
 
   async function indexUsers() {
     const users = await api('users');
@@ -43,10 +46,13 @@ const Usuario: React.FC = () => {
   }, []);
 
   async function handleEditUser(id: number) {
-    const userEdit = await api.put(`users/${id}`);
-    setUsers(userEdit.data);
-    console.log(userEdit);
+    history.push(`/users/${id}`);
   }
+
+  function handleSignOut() {
+    signOut();
+  }
+
   return (
     <Container>
       <Content>
@@ -64,9 +70,9 @@ const Usuario: React.FC = () => {
           <Link to="/">
             <img src={ClientIcon} alt="Clientes" />
           </Link>
-          <Link to="/">
+          <button onClick={() => handleSignOut()}>
             <img src={OutIcon} alt="Sair" />
-          </Link>
+          </button>
         </Menu>
 
         <UserDetailArea>
@@ -79,7 +85,7 @@ const Usuario: React.FC = () => {
             {user.map(item => (
               <ul key={item.id}>
                 <li>
-                  <strong contentEditable>{item.username}</strong>
+                  <strong>{item.username}</strong>
                 </li>
                 <li>
                   <strong>{item.email}</strong>
@@ -87,11 +93,6 @@ const Usuario: React.FC = () => {
                 <li>
                   <button onClick={() => handleEditUser(item.id)}>
                     <FiEdit2 size={20} />
-                  </button>
-                </li>
-                <li>
-                  <button>
-                    <MdDelete size={20} color="#40855d" />
                   </button>
                 </li>
               </ul>

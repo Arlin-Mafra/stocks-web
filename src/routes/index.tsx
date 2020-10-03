@@ -7,6 +7,7 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Dashboard from '../pages/Dashboard';
 import Usuario from '../pages/Usuario';
+import FormUser from '../pages/Usuario/Form';
 
 const Routes: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const Routes: React.FC = () => {
         <Route path="/signup" exact component={Signup} />
         <Route path="/dashboard" exact component={Dashboard} isPrivate />
         <Route path="/users" exact component={Usuario} isPrivate />
+        <Route path="/users/:id" exact component={FormUser} isPrivate />
       </Switch>
     </BrowserRouter>
   );

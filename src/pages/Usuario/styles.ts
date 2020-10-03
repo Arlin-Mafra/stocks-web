@@ -17,6 +17,11 @@ export const Menu = styled.div`
   justify-content: space-between;
   margin-top: 64px;
 
+  button {
+    background: transparent;
+    border: 0;
+  }
+
   img {
     height: 70px;
     width: 70px;
@@ -62,7 +67,8 @@ export const UserDetail = styled.div`
     margin-bottom: 30px;
   }
 
-  && li {
-    margin-left: 0;
+  li {
+    display: flex;
+    justify-content: center;
   }
 `;

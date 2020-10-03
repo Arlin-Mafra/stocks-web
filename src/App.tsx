@@ -1,7 +1,8 @@
-import React from "react";
-import GlobalStyles from "./styles/Global";
-import Routes from "./routes";
-import { AuthProvider } from "./contexts/AuthContext";
+import React from 'react';
+
+import GlobalStyles from './styles/Global';
+import Routes from './routes';
+import { AuthProvider } from './contexts/AuthContext';
 
 const App: React.FC = () => (
   <>
