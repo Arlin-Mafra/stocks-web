@@ -35,14 +35,13 @@ const Category: React.FC = () => {
 
   useEffect(() => {
     getCategories();
-  }, [catIndex]);
+  }, []);
 
   //buscar categorias
   async function getCategories() {
     const response = await api.get('categories');
-
     setCatIndex(response.data);
-    console.log(response);
+    // console.log(response);
   }
 
   //update inputs
@@ -60,10 +59,14 @@ const Category: React.FC = () => {
   }
 
   //delete item
-
   async function handleDelete(id: number) {
     await api.delete(`categories/${id}`);
-    history.push('/categories');
+    window.location.reload();
+  }
+
+  //edit
+  async function handleEdit(id: number) {
+    history.push(`/categories/${id}`);
   }
 
   function hadleSignOut() {
@@ -115,7 +118,7 @@ const Category: React.FC = () => {
                 <strong>{item.description}</strong>
               </li>
               <li>
-                <button>
+                <button onClick={() => handleEdit(item.id)}>
                   <FiEdit2 />
                 </button>
                 <button onClick={() => handleDelete(item.id)}>

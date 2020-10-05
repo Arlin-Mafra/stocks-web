@@ -9,6 +9,7 @@ import Dashboard from '../pages/Dashboard';
 import Usuario from '../pages/Usuario';
 import FormUser from '../pages/Usuario/Form';
 import Category from '../pages/Category';
+import FormCategory from '../pages/Category/Form';
 
 const Routes: React.FC = () => {
   return (
@@ -20,6 +21,12 @@ const Routes: React.FC = () => {
         <Route path="/users" exact component={Usuario} isPrivate />
         <Route path="/users/:id" exact component={FormUser} isPrivate />
         <Route path="/categories" exact component={Category} isPrivate />
+        <Route
+          path="/categories/:id"
+          exact
+          component={FormCategory}
+          isPrivate
+        />
       </Switch>
     </BrowserRouter>
   );
