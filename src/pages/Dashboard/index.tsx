@@ -49,7 +49,7 @@ const DashBoard: React.FC = () => {
             </Link>
           </ContentNavigation>
           <section>
-            <Link to="/">
+            <Link to="/categories">
               <img src={CatIcon} alt="Categorias" />
             </Link>
             <Link to="/">

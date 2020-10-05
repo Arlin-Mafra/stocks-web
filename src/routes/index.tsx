@@ -8,6 +8,7 @@ import Signup from '../pages/Signup';
 import Dashboard from '../pages/Dashboard';
 import Usuario from '../pages/Usuario';
 import FormUser from '../pages/Usuario/Form';
+import Category from '../pages/Category';
 
 const Routes: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const Routes: React.FC = () => {
         <Route path="/dashboard" exact component={Dashboard} isPrivate />
         <Route path="/users" exact component={Usuario} isPrivate />
         <Route path="/users/:id" exact component={FormUser} isPrivate />
+        <Route path="/categories" exact component={Category} isPrivate />
       </Switch>
     </BrowserRouter>
   );
