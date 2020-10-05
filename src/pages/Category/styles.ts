@@ -28,9 +28,10 @@ export const CategoryArea = styled.div`
     margin-top: 30px;
   }
 
-  section {
+  form {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 150px;
 
     label {
@@ -70,7 +71,6 @@ export const CategoryArea = styled.div`
 `;
 
 export const TitleArea = styled.div`
-  margin-top: 30px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -83,21 +83,33 @@ export const TitleArea = styled.div`
     font-weight: bold;
     margin-bottom: 20px;
   }
+`;
 
-  button {
-    width: 145px;
-    height: 40px;
-    background: #40855d;
-    color: #fff;
-    border: 1px solid #40855d;
-    border-radius: 16px;
-    font-weight: bold;
+export const ListCategory = styled.div`
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    :hover {
-      background: #fff;
-      color: #40855d;
+  ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 30px;
+  }
 
-      transition: 0.5s;
-    }
+  li {
+    text-align: left;
+  }
+
+  && li {
+    display: flex;
+
+    margin-right: 150px;
+    margin-left: 150px;
+  }
+  && button {
+    margin-left: 10px;
   }
 `;
