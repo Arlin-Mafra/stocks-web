@@ -10,8 +10,15 @@ import Usuario from '../pages/Usuario';
 import FormUser from '../pages/Usuario/Form';
 import Category from '../pages/Category';
 import FormCategory from '../pages/Category/Form';
+import Product from '../pages/Product';
+
+interface RouteParams{
+  category_id:string;
+}
 
 const Routes: React.FC = () => {
+
+
   return (
     <BrowserRouter>
       <Switch>
@@ -27,6 +34,7 @@ const Routes: React.FC = () => {
           component={FormCategory}
           isPrivate
         />
+        <Route path="/products" exact component={Product} isPrivate />
       </Switch>
     </BrowserRouter>
   );

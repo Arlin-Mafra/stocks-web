@@ -52,7 +52,7 @@ const DashBoard: React.FC = () => {
             <Link to="/categories">
               <img src={CatIcon} alt="Categorias" />
             </Link>
-            <Link to="/">
+            <Link to="/products">
               <img src={ProductIcon} alt="Produtos" />
             </Link>
           </section>
