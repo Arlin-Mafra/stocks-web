@@ -33,34 +33,28 @@ export const ProductArea = styled.div`
   }
 `;
 
-export const Form = styled.form`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 100px;
+export const FormProduct = styled.div`
 
-  label {
-    font-size: 20px;
-    font-weight: bold;
-    margin-right: 10px;
-  }
+     form{
+        display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-top: 100px;
 
-  input {
-    width: 200px;
-    height: 30px;
-    background: #ffffff;
-    border-radius: 5px;
-    padding: 6px;
-    margin-right: 10px;
+      label {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px;
+      }
 
-    ::placeholder {
-      color: #d1cfcf;
-    }
-  }
+      select {
+            margin-right: 10px;
+      }
 
-  select {
-    margin-right: 10px;
-  }
+     }
+
+
 `;
 
 export const TitleArea = styled.div`
@@ -79,19 +73,25 @@ export const TitleArea = styled.div`
 `;
 
 export const ListProducts = styled.div`
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
 
-  td {
-    text-align: center;
-    padding: 10px;
-    border-spacing: 20px;
-  }
+      td {
+            text-align: center;
+            padding:  5px;
+            border-spacing: 20px;
+      }
 
-  & button {
-    margin-right: 10px;
-  }
+      & button {
+            margin-right: 10px;
+      }
+
+     img  {
+            height:  40px;
+            width:  40px;
+            border:  1px solid;
+      }
 `;
 export const Button = styled.button<StyleButto>`
   ${props =>

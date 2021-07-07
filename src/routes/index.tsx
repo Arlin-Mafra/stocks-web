@@ -12,9 +12,6 @@ import Category from '../pages/Category';
 import FormCategory from '../pages/Category/Form';
 import Product from '../pages/Product';
 
-interface RouteParams{
-  category_id:string;
-}
 
 const Routes: React.FC = () => {
 
