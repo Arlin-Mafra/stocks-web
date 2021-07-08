@@ -62,27 +62,23 @@ const Product: React.FC = () => {
     //find cotegories
     async function getCategories() {
         const response = await api.get('categories');
-        console.log(response.data)
+        console.log(response.data);
         setCatIndex(response.data);
     }
     //find products
     async function getproducts() {
         const response = await api.get('products');
         setProductIndex(response.data);
-
     }
 
     //send form
     async function handleRegisterProduct() {
         try {
-            // const data = new FormData();
-            // data.append('name', name);
-            // data.append('amount', String(amount));
-            // data.append('category_id', category_id);
-            // data.append('attachment_id', contextTypes);
-            await api.post('products', {name,amount,
-                category_id:Number(category_id),
-                attachment_id:Number(attachment_id)
+            await api.post('products', {
+                name,
+                amount,
+                category_id: Number(category_id),
+                attachment_id,
             });
             alert('Produto adicionado!');
             window.location.reload();
@@ -92,8 +88,9 @@ const Product: React.FC = () => {
     }
 
     //delete item
-    async function handleDelete(id: number) {
-        await api.delete(`products/${id}`);
+    function handleDelete(id: number) {
+        api.delete(`products/${id}`);
+        alert('Produto deletado!');
         window.location.reload();
     }
 
@@ -106,8 +103,8 @@ const Product: React.FC = () => {
         setAmount(amount + 1);
     }
     function decrement() {
-        if(amount <= 0){
-            return
+        if (amount <= 0) {
+            return;
         }
         setAmount(amount - 1);
     }
@@ -182,8 +179,9 @@ const Product: React.FC = () => {
                             ))}
                         </select>
 
-                        <Avatar name="attachment_id"
-
+                        <Avatar
+                            name="attachment_id"
+                            setImage={setAttachment_id}
                         />
 
                         <Button isSubmit type="submit">
@@ -208,13 +206,16 @@ const Product: React.FC = () => {
                                 <tr>
                                     <td>
                                         <img
-                                            src={nullImage || item.attachments.url}
+                                            src={
+                                                item.attachments.url ||
+                                                nullImage
+                                            }
                                             alt={item.name}
                                         />
                                     </td>
                                     <td>{item.name}</td>
                                     <td>{item.amount}</td>
-                                    <td>{item.categories.description || null}</td>
+                                    <td>{item.categories.description}</td>
                                     <td>
                                         <button
                                             onClick={() => handleEdit(item.id)}

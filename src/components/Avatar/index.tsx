@@ -4,7 +4,7 @@ import nullImage from '../../assets/nullImage.png';
 import api from '../../utils/apiClient';
 import { Container } from './styles';
 
-const Avatar: React.FC<any> = () => {
+const Avatar: React.FC<any> = ({ setImage }) => {
     const { defaultValue, registerField } = useField('attachment_id');
 
     const [file, setFile] = useState(defaultValue && defaultValue.id);
@@ -32,6 +32,7 @@ const Avatar: React.FC<any> = () => {
 
         setFile(id);
         setPreview(url);
+        setImage(id);
 
         console.log(response.data);
     }
@@ -54,3 +55,12 @@ const Avatar: React.FC<any> = () => {
 };
 
 export default Avatar;
+
+
+
+
+
+
+
+
+
