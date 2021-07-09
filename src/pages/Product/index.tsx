@@ -31,10 +31,10 @@ interface catIndex {
 interface ProductIndex {
     id: number;
     name: string;
+    amount: number;
     attachments: {
         url: string;
     };
-    amount: number;
     categories: {
         description: string;
     };
@@ -95,7 +95,7 @@ const Product: React.FC = () => {
     }
 
     //edit
-    async function handleEdit(id: number) {
+    function handleEdit(id: number) {
         history.push(`/products/${id}`);
     }
 
@@ -139,6 +139,8 @@ const Product: React.FC = () => {
                     <strong>Cadastrar Produto</strong>
                 </TitleArea>
                 <hr />
+
+                {/* <ModalEdit /> */}
 
                 <FormProduct>
                     <Form

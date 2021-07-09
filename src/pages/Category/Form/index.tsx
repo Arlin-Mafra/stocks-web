@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
-
 import Layout from '../../../components/Layout';
 import api from '../../../utils/apiClient';
-
 import { CategoryArea, TitleArea } from './styles';
+
+
 
 interface CategoryData {
   description: string;

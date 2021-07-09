@@ -12,9 +12,9 @@ export const Container = styled.div`
         }
 
         img {
-            height: 100px;
-            width: 100px;
-            border-radius: 50%;
+            height: 90px;
+            width: 90px;
+            /* border-radius: 50%; */
             border: 3px solid;
             background-color: #eee;
         }
