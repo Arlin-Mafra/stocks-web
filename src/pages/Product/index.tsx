@@ -14,13 +14,14 @@ import Avatar from '../../components/Avatar';
 import Layout from '../../components/Layout';
 import { useAuth } from '../../contexts/AuthContext';
 import api from '../../utils/apiClient';
+import { ModalEdit } from './ModalEdit';
 import {
     Button,
     FormProduct,
     ListProducts,
     Menu,
     ProductArea,
-    TitleArea
+    TitleArea,
 } from './styles';
 
 interface catIndex {
@@ -40,10 +41,15 @@ interface ProductIndex {
     };
 }
 
-const Product: React.FC = () => {
+// interface ProductProps {
+//     onOpenNewModal: () => void;
+// }
+
+const Product: React.FC = onOpenNewModal => {
     const { signOut } = useAuth();
     const history = useHistory();
 
+    const [modal, setModal] = useState(false);
     const [name, setName] = useState('');
     const [amount, setAmount] = useState(0);
     const [category_id, setCategory_id] = useState('');
@@ -94,11 +100,6 @@ const Product: React.FC = () => {
         window.location.reload();
     }
 
-    //edit
-    function handleEdit(id: number) {
-        history.push(`/products/${id}`);
-    }
-
     function increment() {
         setAmount(amount + 1);
     }
@@ -109,11 +110,21 @@ const Product: React.FC = () => {
         setAmount(amount - 1);
     }
 
+    function handleCloseModal() {
+        setModal(false);
+    }
+
+    function handleOpenModal(id: any) {
+        history.push(`/products/${id}`);
+        setModal(true);
+    }
+
     //Logout
     function hadleSignOut() {
         signOut();
         history.goBack();
     }
+
     return (
         <Layout>
             <Menu>
@@ -140,7 +151,7 @@ const Product: React.FC = () => {
                 </TitleArea>
                 <hr />
 
-                {/* <ModalEdit /> */}
+                <ModalEdit isOpen={modal} onRequestClose={handleCloseModal} />
 
                 <FormProduct>
                     <Form
@@ -219,11 +230,10 @@ const Product: React.FC = () => {
                                     <td>{item.amount}</td>
                                     <td>{item.categories.description}</td>
                                     <td>
-                                        <button
-                                            onClick={() => handleEdit(item.id)}
-                                        >
+                                        <button onClick={handleOpenModal}>
                                             <FiEdit2 />
                                         </button>
+
                                         <button
                                             onClick={() =>
                                                 handleDelete(item.id)

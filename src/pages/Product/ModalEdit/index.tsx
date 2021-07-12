@@ -1,10 +1,9 @@
 import { Form } from '@unform/web';
 import React, { useEffect, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import Modal from 'react-modal';
 import { useHistory, useParams } from 'react-router-dom';
 import Avatar from '../../../components/Avatar';
 import api from '../../../utils/apiClient';
-import { Container } from './styles';
 
 interface IProductData {
     id?: number;
@@ -19,7 +18,13 @@ interface ICategoryData {
     description: string;
 }
 
-const ModalEdit: React.FC = () => {
+interface newTransactionModal {
+    isOpen: boolean;
+    onRequestClose: () => void;
+}
+
+export function ModalEdit ({isOpen, onRequestClose}: newTransactionModal)  {
+
     const [categories, setCategories] = useState<ICategoryData[]>([]);
     const [attachment_id, setAttachment_id] = useState('');
     const [product, setProduct] = useState<IProductData>({
@@ -41,7 +46,6 @@ const ModalEdit: React.FC = () => {
     }, []);
 
     //buscar categorias
-
     async function getCategories() {
         const response = await api.get('categories');
         setCategories(response.data);
@@ -67,10 +71,6 @@ const ModalEdit: React.FC = () => {
         });
     }
 
-    function handleBack() {
-        history.goBack();
-    }
-
     //submit
     async function handleSubmit() {
         await api.put(`/products/${id}`, {
@@ -83,67 +83,50 @@ const ModalEdit: React.FC = () => {
         history.push('/products');
     }
     return (
-        <Container>
-            <Modal.Dialog>
-                <Modal.Header closeButton>
-                    <Modal.Title>Editar Produto</Modal.Title>
-                </Modal.Header>
+        <Modal isOpen={isOpen} onRequestClose={onRequestClose}>
+            <h2>Editar Produto</h2>
 
-                <Form onSubmit={handleSubmit} initialData={ModalEdit}>
-                    <Modal.Body>
-                        Nome:
-                        <input
-                            type="text"
-                            name="name"
-                            value={product.name}
-                            required
-                            onChange={(e: any) => updateProduct(e)}
-                        />
-                        <br />
-                        Quantidade:
-                        <input
-                            type="number"
-                            min="0"
-                            name="amount"
-                            required
-                            value={product.amount}
-                            onChange={(e: any) => updateProduct(e)}
-                        />{' '}
-                        <br />
-                        Categoria:
-                        <select
-                            name="category_id"
-                            value={product.category_id}
-                            onChange={(e: any) => updateProduct(e)}
-                        >
-                            <option value="Selecione" defaultValue="Selecione">
-                                Selecione
-                            </option>
-                            {categories.map((item, index) => (
-                                <option key={index} value={item.id}>
-                                    {item.description}
-                                </option>
-                            ))}
-                        </select>
-                        <br />
-                        <Avatar
-                            name="attachment_id"
-                            setImage={setAttachment_id}
-                        />
-                    </Modal.Body>
-
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleBack}>
-                            Fechar
-                        </Button>
-                        <Button type="submit" variant="primary">
-                            Salvar
-                        </Button>
-                    </Modal.Footer>
-                </Form>
-            </Modal.Dialog>
-        </Container>
+            <Form onSubmit={handleSubmit} initialData={ModalEdit}>
+                Nome:
+                <input
+                    type="text"
+                    name="name"
+                    value={product.name}
+                    required
+                    onChange={(e: any) => updateProduct(e)}
+                />
+                <br />
+                Quantidade:
+                <input
+                    type="number"
+                    min="0"
+                    name="amount"
+                    required
+                    value={product.amount}
+                    onChange={(e: any) => updateProduct(e)}
+                />{' '}
+                <br />
+                Categoria:
+                <select
+                    name="category_id"
+                    value={product.category_id}
+                    onChange={(e: any) => updateProduct(e)}
+                >
+                    <option value="Selecione" defaultValue="Selecione">
+                        Selecione
+                    </option>
+                    {categories.map((item, index) => (
+                        <option key={index} value={item.id}>
+                            {item.description}
+                        </option>
+                    ))}
+                </select>
+                <br />
+                <Avatar name="attachment_id" setImage={setAttachment_id} />
+                <button type="submit">Salvar</button>
+            </Form>
+        </Modal>
     );
 };
 
-export default ModalEdit;
+// export default ModalEdit;

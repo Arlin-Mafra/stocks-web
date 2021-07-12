@@ -4,7 +4,6 @@ import Category from '../pages/Category';
 import FormCategory from '../pages/Category/Form';
 import Dashboard from '../pages/Dashboard';
 import Product from '../pages/Product';
-import ModalEdit from '../pages/Product/ModalEdit';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Usuario from '../pages/Usuario';
@@ -41,7 +40,7 @@ const Routes: React.FC = () => {
                 <Route
                     path="/products/:id"
                     exact
-                    component={ModalEdit}
+                    component={Product}
                     isPrivate
                 />
             </Switch>
